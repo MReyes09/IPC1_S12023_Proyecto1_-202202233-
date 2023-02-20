@@ -10,15 +10,20 @@ public class Usuario {
     private String lastNamUsu;
     private String passUsu;
     private String dpiUsu;
-    private Date dateborn;
+    private String dateborn;
     private String gender;
     private String nationality;
     private String nickNamme;
     private String phone;
     private String rol;
     private String image;
+    private String gmail;
 
-    public Usuario(int id_usu, String nameUsu, String lastNamUsu, String passUsu, String dpiUsu, Date dateborn, String gender, String nationality, String nickNamme, String phone, String rol, String image) {
+    public Usuario(){
+    
+    }
+    
+    public Usuario(int id_usu, String nameUsu, String lastNamUsu, String passUsu, String dpiUsu, String dateborn, String gender, String nationality, String nickNamme, String phone, String rol, String image, String gmail) {
         this.id_usu = id_usu;
         this.nameUsu = nameUsu;
         this.lastNamUsu = lastNamUsu;
@@ -31,8 +36,17 @@ public class Usuario {
         this.phone = phone;
         this.rol = rol;
         this.image = image;
+        this.gmail = gmail;
+    }
+    
+    public String getGmail() {
+        return gmail;
     }
 
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+    
     public int getId_usu() {
         return id_usu;
     }
@@ -73,11 +87,11 @@ public class Usuario {
         this.dpiUsu = dpiUsu;
     }
 
-    public Date getDateborn() {
+    public String getDateborn() {
         return dateborn;
     }
 
-    public void setDateborn(Date dateborn) {
+    public void setDateborn(String dateborn) {
         this.dateborn = dateborn;
     }
 
@@ -128,6 +142,5 @@ public class Usuario {
     public void setImage(String image) {
         this.image = image;
     }
-    
     
 }
