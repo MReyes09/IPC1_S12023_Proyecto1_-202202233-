@@ -1,16 +1,23 @@
 
 package ventana;
 
-import beam.Usuario;
+import controller.UsuarioController;
 import java.awt.BorderLayout;
+import panel.PanelMenuUsuario;
 import view.panel.PanelMenuAdmin;
 
 /**
  * @author matth
  */
 public class ViewInicial extends javax.swing.JFrame {
+    //                      Importacion de paneles
     PanelMenuAdmin pMenAdm = new PanelMenuAdmin();
-    static Usuario usuarios = new Usuario();
+    PanelMenuUsuario pMenUsu = new PanelMenuUsuario();
+    //-----------------------------------------------------
+    // INSTANCIAS DE CONTROLLADOR
+    UsuarioController tempUsuarioControlador = new UsuarioController();
+    javax.swing.JPanel panelFind = null;
+    //INSTANCIAS DE CLASES
     
     public ViewInicial() {
         initComponents();
@@ -36,13 +43,13 @@ public class ViewInicial extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_Password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        txt_Correo = new javax.swing.JTextField();
+        btn_Ingresar = new javax.swing.JButton();
+        txt_Gmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("USAC -Delivery");
 
-        panelBase.setBackground(new java.awt.Color(0, 111, 75));
+        panelBase.setBackground(new java.awt.Color(153, 153, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -58,21 +65,16 @@ public class ViewInicial extends javax.swing.JFrame {
 
         txt_Password.setText("202202233");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Ingresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Ingresar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Ingresar.setText("Ingresar");
+        btn_Ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_IngresarActionPerformed(evt);
             }
         });
 
-        txt_Correo.setText("ipc1_carnet@ipc1delivery.com");
-        txt_Correo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_CorreoActionPerformed(evt);
-            }
-        });
+        txt_Gmail.setText("ipc1_carnet@ipc1delivery.com");
 
         javax.swing.GroupLayout panelBaseLayout = new javax.swing.GroupLayout(panelBase);
         panelBase.setLayout(panelBaseLayout);
@@ -83,19 +85,19 @@ public class ViewInicial extends javax.swing.JFrame {
                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(71, 71, 71)
+                .addGap(33, 33, 33)
                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_Password)
-                    .addComponent(txt_Correo, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addComponent(txt_Password, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(txt_Gmail))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(308, Short.MAX_VALUE)
                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(306, 306, 306))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBaseLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(317, 317, 317))))
         );
         panelBaseLayout.setVerticalGroup(
@@ -113,9 +115,9 @@ public class ViewInicial extends javax.swing.JFrame {
                         .addGap(118, 118, 118)
                         .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79))
         );
 
@@ -133,22 +135,47 @@ public class ViewInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_CorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_CorreoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cambiarPaneles(pMenAdm);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
+        String correo = txt_Gmail.getText();
+        String password = String.valueOf(txt_Password.getPassword());
+        
+        panelFind = tempUsuarioControlador.login(correo, password);
+        if(panelFind != null){
+            cambiarPaneles(panelFind);
+        }
+        /*
+        boolean ingreso = false;
+        for(int i=0; i<usuarios.size();i++){
+            if(correo.equals(usuarios.get(i).getGmail())){
+                if(password.equals(usuarios.get(i).getPassUsu())){
+                    JOptionPane.showMessageDialog(this,"Sesión Inicializada");
+                    if(usuarios.get(i).getRol().equals("Admin")){
+                        cambiarPaneles(pMenAdm);
+                        break;
+                    }else if(usuarios.get(i).getRol().equals("Admin")){
+                        cambiarPaneles(pMenUsu);
+                        break;
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this,"Contraseña incorrecta");
+                    break;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Correo Incorrecto");
+                break;
+            }
+        }JOptionPane.showMessageDialog(this,"Los datos brindados no son existentes");
+        */
+    }//GEN-LAST:event_btn_IngresarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_Ingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JPanel panelBase;
-    private javax.swing.JTextField txt_Correo;
+    private javax.swing.JTextField txt_Gmail;
     private javax.swing.JPasswordField txt_Password;
     // End of variables declaration//GEN-END:variables
 }
