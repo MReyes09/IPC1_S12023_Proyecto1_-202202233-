@@ -9,11 +9,15 @@ import ventana.ViewInicial;
  */
 public class Proyecto1 {
     static UsuarioController usController = new UsuarioController();
+    static ViewInicial vMain = new ViewInicial();
     
     public static void main(String[] args) {
         usController.createUsuarioAdmin();
-        ViewInicial vMain = new ViewInicial();
         vMain.setVisible(true);
         vMain.setLocationRelativeTo(null);
+    }
+
+    public ViewInicial getvMain() {
+        return vMain;
     }
 }

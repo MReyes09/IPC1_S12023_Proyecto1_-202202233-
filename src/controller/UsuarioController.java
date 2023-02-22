@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import panel.PanelMenuUsuario;
 import ventana.ViewInicial;
-import view.panel.PanelMenuAdmin;
+import panel.PanelMenuAdmin;
 
 /*
  * @author Matthew Reyes
