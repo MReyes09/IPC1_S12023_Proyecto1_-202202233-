@@ -5,7 +5,6 @@ import controller.MainController;
 import controller.UsuarioController;
 
 /**
- *
  * @author matth
  */
 public class PanelLogin extends javax.swing.JPanel {
@@ -32,6 +31,7 @@ public class PanelLogin extends javax.swing.JPanel {
         txt_Password = new javax.swing.JPasswordField();
         btn_Ingresar = new javax.swing.JButton();
         txt_Gmail = new javax.swing.JTextField();
+        btn_Registrate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 0));
 
@@ -60,6 +60,15 @@ public class PanelLogin extends javax.swing.JPanel {
 
         txt_Gmail.setText("ipc1_carnet@ipc1delivery.com");
 
+        btn_Registrate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Registrate.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Registrate.setText("Registrate");
+        btn_Registrate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegistrateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,14 +84,16 @@ public class PanelLogin extends javax.swing.JPanel {
                     .addComponent(txt_Gmail))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+                .addContainerGap(238, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(306, 306, 306))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(317, 317, 317))))
+                        .addGap(70, 70, 70)
+                        .addComponent(btn_Registrate)
+                        .addGap(242, 242, 242))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +112,9 @@ public class PanelLogin extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Registrate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -117,9 +130,16 @@ public class PanelLogin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_IngresarActionPerformed
 
+    private void btn_RegistrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrateActionPerformed
+        MainController mainControl = new MainController();
+        panelFind = mainControl.getpRegUsuario();
+        mainControl.getMain().getvMain().cambiarPaneles(panelFind);
+    }//GEN-LAST:event_btn_RegistrateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Ingresar;
+    private javax.swing.JButton btn_Registrate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

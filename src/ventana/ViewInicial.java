@@ -1,8 +1,10 @@
 
 package ventana;
 
+import controller.MainController;
 import controller.UsuarioController;
 import java.awt.BorderLayout;
+import panel.PanelRegistroUsuario;
 
 /**
  * @author matth
@@ -13,6 +15,7 @@ public class ViewInicial extends javax.swing.JFrame {
     UsuarioController tempUsuarioControlador = new UsuarioController();
     javax.swing.JPanel panelFind = null;
     //INSTANCIAS DE CLASES
+    MainController mainControl = new MainController();
     
     public ViewInicial() {
         initComponents();
@@ -99,7 +102,7 @@ public class ViewInicial extends javax.swing.JFrame {
                     .addGroup(panelBaseLayout.createSequentialGroup()
                         .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
-                        .addComponent(btn_Registrate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Registrate))
                     .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txt_Password, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                         .addComponent(txt_Gmail)))
@@ -153,7 +156,8 @@ public class ViewInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_IngresarActionPerformed
 
     private void btn_RegistrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrateActionPerformed
-        // TODO add your handling code here:
+        panelFind = mainControl.getpRegUsuario();
+        mainControl.getMain().getvMain().cambiarPaneles(panelFind);
     }//GEN-LAST:event_btn_RegistrateActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
