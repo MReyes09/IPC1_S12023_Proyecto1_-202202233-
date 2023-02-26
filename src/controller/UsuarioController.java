@@ -4,10 +4,8 @@ package controller;
 import beam.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import panel.PanelMenuUsuario;
-import panel.PanelMenuAdmin;
 
-/*
+/**
  * @author Matthew Reyes
  */
 
@@ -15,9 +13,7 @@ public class UsuarioController {
     static ArrayList<Usuario> usuario = new ArrayList<Usuario>();
     static javax.swing.JPanel cambioPanel = null;
     static MainController mainController = new MainController();
-    //PUNTO DE ERROR
-    //PanelMenuAdmin pMenAdm = new PanelMenuAdmin();
-    //PanelMenuUsuario pMenUsu = new PanelMenuUsuario();
+    static int indOfUserLogin=0;
     
     public void createUsuarioAdmin(){
         usuario.add(new Usuario(0,"",""
@@ -30,23 +26,35 @@ public class UsuarioController {
                 if(password.equals(usuario.get(i).getPassUsu())){
                     JOptionPane.showMessageDialog(null,"Sesión Inicializada");
                     if(usuario.get(i).getRol().equals("Admin")){
+                        indOfUserLogin = i;
                         System.out.println("ROL:"+usuario.get(i).getRol()+
                                 " GMAIL:" + usuario.get(i).getGmail());
                         cambioPanel = mainController.getpMenAdm();
                         return cambioPanel;
-                    }else if(usuario.get(i).getRol().equals("Admin")){
+                    }else if(usuario.get(i).getRol().equals("Usuario")){
+                        indOfUserLogin = i;
                         System.out.println("ROL:"+usuario.get(i).getRol()+
                                 " GMAIL:" + usuario.get(i).getGmail());
+                        i = usuario.size();
                         cambioPanel = mainController.getpMenUsu();
                         return cambioPanel;
+                    }else if(usuario.get(i).getRol().equals("Empresarial")){
+                        indOfUserLogin = i;
+                        System.out.println("ROL:"+usuario.get(i).getRol()+
+                                " GMAIL:" + usuario.get(i).getGmail());
+                        i = usuario.size();
+                        cambioPanel = mainController.getPanelMenuEmp();
+                        return cambioPanel;
                     }
+                    i = usuario.size();
                 }else{
+                    i = usuario.size();
                     JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
+                    return null;
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Correo Incorrecto");
             }
         }
+        JOptionPane.showMessageDialog(null,"Los datos proporcionados no corresponden a ningun usuario");
         return null;
     }
     
@@ -77,5 +85,18 @@ public class UsuarioController {
             + "Por favor, ingrese una contraseña válida.");
         }
         return null;
+    }
+    
+    public Usuario getUserLogin(){
+        Usuario usuLoged = new Usuario();        
+        usuLoged = usuario.get(indOfUserLogin);
+        return usuLoged;
+    }
+    
+    public Usuario actualizar(Usuario usu){
+        Usuario usuChange = new Usuario();
+        usuChange = usuario.set(usu.getId_usu(), usu);
+         JOptionPane.showMessageDialog(null,"El usuario fue actualizado exitosamente");
+        return usuChange;
     }
 }

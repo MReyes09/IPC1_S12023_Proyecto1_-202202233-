@@ -4,8 +4,12 @@ package controller;
 import System.Proyecto1;
 import panel.PanelLogin;
 import panel.PanelMenuAdmin;
+import panel.PanelMenuEmpresarial;
 import panel.PanelMenuUsuario;
+import panel.PanelRegion;
 import panel.PanelRegistroUsuario;
+import panel.PanelPerfil;
+import panel.PanelKiosco;
 
 /**
  * @author matth
@@ -13,7 +17,6 @@ import panel.PanelRegistroUsuario;
 public class MainController {
     public Proyecto1 escenario = new Proyecto1();
     public PanelLogin pLogin = new PanelLogin();
-    //
 
     public Proyecto1 getMain() {
         return escenario;
@@ -37,5 +40,23 @@ public class MainController {
         return pMenUsu;
     }
     
+    public PanelRegion getPanelRegion(){
+        PanelRegion pRegion = new PanelRegion();
+        return pRegion;
+    }
     
+    public PanelPerfil getPanelPerfil(){
+        PanelPerfil pPerfil = new PanelPerfil();
+        return pPerfil;
+    }
+    
+    public PanelMenuEmpresarial getPanelMenuEmp(){
+        PanelMenuEmpresarial pMenEm = new PanelMenuEmpresarial();
+        return pMenEm;
+    }
+    
+    public PanelKiosco getPanelKiosco(){
+        PanelKiosco pKiosco = new PanelKiosco();
+        return pKiosco;
+    }
 }
