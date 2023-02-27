@@ -1,19 +1,29 @@
 
 package panel;
 
+import beam.Kiosco;
 import beam.Region;
+import controller.KioscoController;
+import controller.MainController;
 import controller.RegionController;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author matth
  */
 public class PanelKiosco extends javax.swing.JPanel {
     RegionController regContr = new RegionController();
+    KioscoController kioCon = new KioscoController();
+    DefaultTableModel model = new DefaultTableModel();
+    int i=0;
 
     public PanelKiosco() {
         initComponents();
         setDatosCodReg();
+        listar();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +43,7 @@ public class PanelKiosco extends javax.swing.JPanel {
         btn_Agregar = new javax.swing.JButton();
         btn_Actualizar = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
+        btn_Obtener = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 102));
 
@@ -67,15 +78,37 @@ public class PanelKiosco extends javax.swing.JPanel {
         jLabel4.setText("Nombre Kiosco:");
 
         btn_Volver.setText("Volver");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
 
         btn_Agregar.setText("Agregar");
+        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarActionPerformed(evt);
+            }
+        });
 
         btn_Actualizar.setText("Actualizar");
+        btn_Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ActualizarActionPerformed(evt);
+            }
+        });
 
         btn_Eliminar.setText("Eliminar");
         btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_EliminarActionPerformed(evt);
+            }
+        });
+
+        btn_Obtener.setText("Obtener Datos");
+        btn_Obtener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ObtenerActionPerformed(evt);
             }
         });
 
@@ -112,7 +145,9 @@ public class PanelKiosco extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(btn_Volver)
-                .addGap(229, 229, 229)
+                .addGap(142, 142, 142)
+                .addComponent(btn_Obtener)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_Agregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_Actualizar)
@@ -142,7 +177,8 @@ public class PanelKiosco extends javax.swing.JPanel {
                     .addComponent(btn_Volver)
                     .addComponent(btn_Agregar)
                     .addComponent(btn_Actualizar)
-                    .addComponent(btn_Eliminar))
+                    .addComponent(btn_Eliminar)
+                    .addComponent(btn_Obtener))
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -151,18 +187,80 @@ public class PanelKiosco extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
+    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
+        String codRegion = cmb_CodRegion.getSelectedItem().toString();
+        String nombreKio = txt_Nombre.getText();
+        kioCon.agregar(codRegion, nombreKio);
+        listar();        
+    }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void btn_ObtenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ObtenerActionPerformed
+        int fila = tb_Kioscos.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila antes");
+        }else{
+            String idKiosco = String.valueOf(tb_Kioscos.getValueAt(fila, 0));
+            String nombre = (String)tb_Kioscos.getValueAt(fila, 1);
+            String idRegion = (String)(tb_Kioscos.getValueAt(fila, 2));
+            txt_CodKiosco.setText(idKiosco);
+            txt_Nombre.setText(nombre);
+            cmb_CodRegion.setSelectedItem(idRegion);
+        }
+    }//GEN-LAST:event_btn_ObtenerActionPerformed
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        MainController mainCon = new MainController();
+        javax.swing.JPanel cambioPanel=null;
+        i = 0;
+        cambioPanel = mainCon.getPanelMenuEmp();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_btn_VolverActionPerformed
+
+    private void btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarActionPerformed
+        int index = tb_Kioscos.getRowCount();
+        int idKiosco = Integer.parseInt(txt_CodKiosco.getText());
+        String codRegion = cmb_CodRegion.getSelectedItem().toString();
+        String nombreKio = txt_Nombre.getText();
+        for(int e=0; e<index;e++){
+            model.removeRow(0);
+        }
+        kioCon.actualizar(idKiosco, codRegion, nombreKio);
+        i = 0;
+        listar();
+        limpiar();
+    }//GEN-LAST:event_btn_ActualizarActionPerformed
+
     private void setDatosCodReg(){
         ArrayList<Region> reg = new ArrayList<Region>();
         reg = regContr.getListRegion();
         for(int i = 0; i<reg.size(); i++){
             cmb_CodRegion.addItem(reg.get(i).getId_region());
         }
+        txt_CodKiosco.setEnabled(false);
+    }
+    
+    private void listar(){
+        model = (DefaultTableModel)tb_Kioscos.getModel();
+        List<Kiosco> lista = kioCon.listarKioscos();
+        Object[]object = new Object[3];
+        for(i = i;i < lista.size(); i++){
+            object[0]=lista.get(i).getId_Kiosco();
+            object[1]=lista.get(i).getNombreKiosco();
+            object[2]=lista.get(i).getCodRegion();
+            model.addRow(object);
+        }
+    }
+    
+    private void limpiar(){
+        txt_CodKiosco.setText("");
+        txt_Nombre.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Actualizar;
     private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Obtener;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JComboBox<String> cmb_CodRegion;
     private javax.swing.JLabel jLabel1;
