@@ -7,15 +7,15 @@ package beam;
 public class Kiosco {
     private int id_Kiosco;
     private String codRegion;
-    private String nombreKio;
+    private String nombreKiosco;
 
     public Kiosco() {
     }
 
-    public Kiosco(int id_Kiosco, String codRegion, String nombreKio) {
+    public Kiosco(int id_Kiosco, String codRegion, String nombreKiosco) {
         this.id_Kiosco = id_Kiosco;
         this.codRegion = codRegion;
-        this.nombreKio = nombreKio;
+        this.nombreKiosco = nombreKiosco;
     }
 
     public int getId_Kiosco() {
@@ -34,11 +34,11 @@ public class Kiosco {
         this.codRegion = codRegion;
     }
 
-    public String getNombreKio() {
-        return nombreKio;
+    public String getNombreKiosco() {
+        return nombreKiosco;
     }
 
-    public void setNombreKio(String nombreKio) {
-        this.nombreKio = nombreKio;
+    public void setNombreKiosco(String nombreKiosco) {
+        this.nombreKiosco = nombreKiosco;
     }
 }

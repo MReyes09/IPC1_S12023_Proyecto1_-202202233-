@@ -1,8 +1,7 @@
-C
 package controller;
 
-import beam.Kiosco;
 import java.util.ArrayList;
+import beam.Kiosco;
 
 /**
  * @author matth
