@@ -184,7 +184,15 @@ public class PanelKiosco extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        // TODO add your handling code here:
+        int id_Kiosco = Integer.parseInt(txt_CodKiosco.getText());
+        kioCon.eliminar(id_Kiosco);
+        int index = tb_Kioscos.getRowCount();
+        for(int e=0; e<index;e++){
+            model.removeRow(0);
+        }
+        i = 0;
+        listar();
+        limpiar();
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed

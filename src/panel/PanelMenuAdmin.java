@@ -45,7 +45,12 @@ public class PanelMenuAdmin extends javax.swing.JPanel {
         });
 
         btn_Kioscos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Kioscos.setText("Kioscos");
+        btn_Kioscos.setText("Manejo de Kioscos");
+        btn_Kioscos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_KioscosActionPerformed(evt);
+            }
+        });
 
         btn_Regiones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Regiones.setText("Manejo de Regiones y precios");
@@ -57,6 +62,11 @@ public class PanelMenuAdmin extends javax.swing.JPanel {
 
         btn_Departamento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Departamento.setText("Departamentos y Municipios");
+        btn_Departamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DepartamentoActionPerformed(evt);
+            }
+        });
 
         btn_Reportes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Reportes.setText("Reportes");
@@ -129,6 +139,17 @@ public class PanelMenuAdmin extends javax.swing.JPanel {
         mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
     }//GEN-LAST:event_btn_PerfilActionPerformed
 
+    private void btn_KioscosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_KioscosActionPerformed
+        cambioPanel = mainCon.getPanelKiosco();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_btn_KioscosActionPerformed
+
+    private void btn_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DepartamentoActionPerformed
+        cambioPanel = mainCon.getPanelDepartamento();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_btn_DepartamentoActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Departamento;

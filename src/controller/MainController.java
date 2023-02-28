@@ -2,6 +2,7 @@
 package controller;
 
 import System.Proyecto1;
+import panel.PanelDepartamento;
 import panel.PanelLogin;
 import panel.PanelMenuAdmin;
 import panel.PanelMenuEmpresarial;
@@ -58,5 +59,10 @@ public class MainController {
     public PanelKiosco getPanelKiosco(){
         PanelKiosco pKiosco = new PanelKiosco();
         return pKiosco;
+    }
+    
+    public PanelDepartamento getPanelDepartamento(){
+        PanelDepartamento pDepa = new PanelDepartamento();
+        return pDepa;
     }
 }
