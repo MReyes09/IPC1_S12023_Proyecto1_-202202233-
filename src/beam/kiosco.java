@@ -1,15 +1,21 @@
 
 package beam;
 
-public class kiosco {
+/**
+ * @author matth
+ */
+public class Kiosco {
     private int id_Kiosco;
-    private String nomkiosco;
-    private int id_region;
+    private String codRegion;
+    private String nombreKio;
 
-    public kiosco(int id_Kiosco, String nomkiosco, int id_region) {
+    public Kiosco() {
+    }
+
+    public Kiosco(int id_Kiosco, String codRegion, String nombreKio) {
         this.id_Kiosco = id_Kiosco;
-        this.nomkiosco = nomkiosco;
-        this.id_region = id_region;
+        this.codRegion = codRegion;
+        this.nombreKio = nombreKio;
     }
 
     public int getId_Kiosco() {
@@ -20,20 +26,19 @@ public class kiosco {
         this.id_Kiosco = id_Kiosco;
     }
 
-    public String getNomkiosco() {
-        return nomkiosco;
+    public String getCodRegion() {
+        return codRegion;
     }
 
-    public void setNomkiosco(String nomkiosco) {
-        this.nomkiosco = nomkiosco;
+    public void setCodRegion(String codRegion) {
+        this.codRegion = codRegion;
     }
 
-    public int getId_region() {
-        return id_region;
+    public String getNombreKio() {
+        return nombreKio;
     }
 
-    public void setId_region(int id_region) {
-        this.id_region = id_region;
+    public void setNombreKio(String nombreKio) {
+        this.nombreKio = nombreKio;
     }
-    
 }

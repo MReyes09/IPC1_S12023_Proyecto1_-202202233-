@@ -1,4 +1,4 @@
-
+C
 package controller;
 
 import beam.Kiosco;
