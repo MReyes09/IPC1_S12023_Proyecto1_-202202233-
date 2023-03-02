@@ -3,13 +3,26 @@ package beam;
 
 public class Departamento {
     private int id_depart;
-    private int id_region;
+    private String id_region;
     private String region;
+    private String nombre;
 
-    public Departamento(int id_depart, int id_region, String region) {
+    public Departamento(){
+    }
+
+    public Departamento(int id_depart, String id_region, String region, String nombre) {
         this.id_depart = id_depart;
         this.id_region = id_region;
         this.region = region;
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getId_depart() {
@@ -20,11 +33,11 @@ public class Departamento {
         this.id_depart = id_depart;
     }
 
-    public int getId_region() {
+    public String getId_region() {
         return id_region;
     }
 
-    public void setId_region(int id_region) {
+    public void setId_region(String id_region) {
         this.id_region = id_region;
     }
 

@@ -1,10 +1,15 @@
 
 package panel;
 
+import beam.Departamento;
 import beam.Region;
+import controller.DepartamentoController;
 import controller.KioscoController;
+import controller.MainController;
 import controller.RegionController;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,11 +19,13 @@ public class PanelDepartamento extends javax.swing.JPanel {
     RegionController regContr = new RegionController();
     KioscoController kioCon = new KioscoController();
     DefaultTableModel model = new DefaultTableModel();
+    DepartamentoController depaController = new DepartamentoController();
     int i=0;
 
     public PanelDepartamento() {
         initComponents();
         setDatosCodReg();
+        listar();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,6 +69,12 @@ public class PanelDepartamento extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Nombre Región:");
+
+        cmb_CodReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_CodRegActionPerformed(evt);
+            }
+        });
 
         tbl_Departamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,24 +203,88 @@ public class PanelDepartamento extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
-
+        MainController mainCon = new MainController();
+        javax.swing.JPanel cambioPanel=null;
+        i = 0;
+        cambioPanel = mainCon.getpMenAdm();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
-
+        String nombre = txt_NomDepa.getText();
+        String id_Reg = cmb_CodReg.getSelectedItem().toString();
+        String region = txt_NomReg.getText();
+        depaController.agregar(id_Reg, region, nombre);
+        listar();
     }//GEN-LAST:event_btn_AgregarActionPerformed
 
     private void btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarActionPerformed
-
+        int index = tbl_Departamento.getRowCount();
+        int idDepa = Integer.parseInt(txt_CodDepa.getText());
+        String nombre = txt_NomDepa.getText();
+        String id_Reg = cmb_CodReg.getSelectedItem().toString();
+        String region = txt_NomReg.getText();
+        for(int e = 0; e<index;e++){
+            model.removeRow(0);
+        }
+        depaController.actualizar(idDepa, id_Reg, nombre, region);
+        i=0;
+        listar();
+        limpiar();
     }//GEN-LAST:event_btn_ActualizarActionPerformed
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-
+        int id_Depa = Integer.parseInt(txt_CodDepa.getText());
+        depaController.eliminar(id_Depa);
+        int index = tbl_Departamento.getRowCount();
+        for(int e=0; e<index;e++){
+            model.removeRow(0);
+        }
+        i = 0;
+        listar();
+        limpiar();
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_ObtenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ObtenerActionPerformed
-
+        int fila = tbl_Departamento.getSelectedRow();
+        if(fila == -1 ){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila antes");
+        }else{
+            String id_Depa = String.valueOf(tbl_Departamento.getValueAt(fila, 0));
+            String nombre = (String)tbl_Departamento.getValueAt(fila, 1);
+            String id_Reg = (String)tbl_Departamento.getValueAt(fila, 2);
+            String region = (String)tbl_Departamento.getValueAt(fila, 3);
+            txt_CodDepa.setText(id_Depa);
+            txt_NomDepa.setText(nombre);
+            cmb_CodReg.setSelectedItem(region);
+            txt_NomReg.setText(region);
+        }
     }//GEN-LAST:event_btn_ObtenerActionPerformed
+
+    private void cmb_CodRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CodRegActionPerformed
+        int selectIndex = cmb_CodReg.getSelectedIndex();
+        
+        switch(selectIndex){
+            case 0:
+                txt_NomReg.setText("Metropolitana");
+                break;
+            case 1:
+                txt_NomReg.setText("Norte");
+                break;
+            case 2:
+                txt_NomReg.setText("Nororiente");
+                break;
+            case 3:
+                txt_NomReg.setText("Suroriente");
+                break;
+            case 4:
+                txt_NomReg.setText("Suroccidente");
+                break;
+            case 5:
+                txt_NomReg.setText("Noroccidente");
+                break;
+        }
+    }//GEN-LAST:event_cmb_CodRegActionPerformed
 
     private void setDatosCodReg(){
         ArrayList<Region> reg = new ArrayList<Region>();
@@ -216,6 +293,26 @@ public class PanelDepartamento extends javax.swing.JPanel {
             cmb_CodReg.addItem(reg.get(i).getId_region());
         }
         txt_CodDepa.setEnabled(false);
+        txt_NomReg.setEnabled(false);
+    }
+    
+    private void listar(){
+        model = (DefaultTableModel)tbl_Departamento.getModel();
+        List<Departamento> lista = depaController.getDepartamento();
+        Object[]object = new Object[4];
+        for(i = i;i < lista.size(); i++){
+            object[0]=lista.get(i).getId_depart();
+            object[1]=lista.get(i).getNombre();
+            object[2]=lista.get(i).getId_region();
+            object[3]=lista.get(i).getRegion();
+            model.addRow(object);
+        }
+    }
+    
+    private void limpiar(){
+        txt_CodDepa.setText("");
+        txt_NomDepa.setText("");
+        txt_NomReg.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
