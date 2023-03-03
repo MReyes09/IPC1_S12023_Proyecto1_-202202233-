@@ -5,7 +5,7 @@ package beam;
  * @author matth
  */
 public class Kiosco {
-    private int id_Kiosco;
+        private int id_Kiosco;
     private String codRegion;
     private String nombreKiosco;
 
