@@ -1,22 +1,15 @@
 package beam;
 
 public class Municipio {
-    private int id_muni;
     private int id_depart;
     private String nameMun;
+    
+    Municipio(){
+    }
 
-    public Municipio(int id_muni, int id_depart, String nameMun) {
-        this.id_muni = id_muni;
+    public Municipio(int id_depart, String nameMun) {
         this.id_depart = id_depart;
         this.nameMun = nameMun;
-    }
-
-    public int getId_muni() {
-        return id_muni;
-    }
-
-    public void setId_muni(int id_muni) {
-        this.id_muni = id_muni;
     }
 
     public int getId_depart() {
@@ -34,5 +27,4 @@ public class Municipio {
     public void setNameMun(String nameMun) {
         this.nameMun = nameMun;
     }
-    
 }

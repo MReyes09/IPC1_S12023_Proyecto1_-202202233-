@@ -47,6 +47,7 @@ public class PanelDepartamento extends javax.swing.JPanel {
         btn_Actualizar = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
         btn_Obtener = new javax.swing.JButton();
+        btn_Municipios = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 0));
 
@@ -129,6 +130,13 @@ public class PanelDepartamento extends javax.swing.JPanel {
             }
         });
 
+        btn_Municipios.setText("Munincipios");
+        btn_Municipios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MunicipiosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,23 +157,26 @@ public class PanelDepartamento extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_NomDepa, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_NomReg, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_NomDepa, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(txt_NomReg, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_Volver)
                                 .addGap(142, 142, 142)
                                 .addComponent(btn_Obtener)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Agregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Actualizar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_Agregar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btn_Actualizar))
+                                    .addComponent(btn_Municipios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(12, 12, 12)
-                                .addComponent(btn_Eliminar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btn_Eliminar)))))
                 .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -191,7 +202,9 @@ public class PanelDepartamento extends javax.swing.JPanel {
                     .addComponent(cmb_CodReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btn_Municipios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Volver)
                     .addComponent(btn_Agregar)
@@ -286,6 +299,13 @@ public class PanelDepartamento extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cmb_CodRegActionPerformed
 
+    private void btn_MunicipiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MunicipiosActionPerformed
+        MainController mainCon = new MainController();
+        javax.swing.JPanel cambioPanel=null;
+        cambioPanel = mainCon.getPanelMunicipio();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_btn_MunicipiosActionPerformed
+
     private void setDatosCodReg(){
         ArrayList<Region> reg = new ArrayList<Region>();
         reg = regContr.getListRegion();
@@ -319,6 +339,7 @@ public class PanelDepartamento extends javax.swing.JPanel {
     private javax.swing.JButton btn_Actualizar;
     private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Municipios;
     private javax.swing.JButton btn_Obtener;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JComboBox<String> cmb_CodReg;

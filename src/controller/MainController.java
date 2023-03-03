@@ -11,6 +11,7 @@ import panel.PanelRegion;
 import panel.PanelRegistroUsuario;
 import panel.PanelPerfil;
 import panel.PanelKiosco;
+import panel.PanelMunicipio;
 
 /**
  * @author matth
@@ -64,5 +65,10 @@ public class MainController {
     public PanelDepartamento getPanelDepartamento(){
         PanelDepartamento pDepa = new PanelDepartamento();
         return pDepa;
+    }
+    
+    public PanelMunicipio getPanelMunicipio(){
+        PanelMunicipio pMuni = new PanelMunicipio();
+        return pMuni;
     }
 }

@@ -4,7 +4,6 @@ package ventana;
 import controller.MainController;
 import controller.UsuarioController;
 import java.awt.BorderLayout;
-import panel.PanelRegistroUsuario;
 
 /**
  * @author matth
