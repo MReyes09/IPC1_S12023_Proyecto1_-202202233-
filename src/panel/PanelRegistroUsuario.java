@@ -1,8 +1,11 @@
 
 package panel;
 
+import beam.Kiosco;
+import controller.KioscoController;
 import controller.MainController;
 import controller.UsuarioController;
+import java.util.ArrayList;
 
 /**
  * @author matth
@@ -10,8 +13,12 @@ import controller.UsuarioController;
 public class PanelRegistroUsuario extends javax.swing.JPanel {
     MainController mainControl = new MainController();
     javax.swing.JPanel cambioPanel=null;
+    KioscoController kioscoController = new KioscoController();
+    
     public PanelRegistroUsuario() {
         initComponents();
+        lbl_Kiosco.setVisible(false);
+        cmb_Kiosco.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -43,8 +50,8 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
         btn_Registrarse = new javax.swing.JButton();
         btn_IniciarSesion = new javax.swing.JButton();
         cmb_Nacionalidad = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        lbl_Kiosco = new javax.swing.JLabel();
+        cmb_Kiosco = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 0));
 
@@ -97,6 +104,11 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
         jLabel12.setText("Rol:");
 
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Empresarial", "Kiosco" }));
+        cmb_Rol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_RolActionPerformed(evt);
+            }
+        });
 
         cmb_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
 
@@ -120,11 +132,9 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
 
         cmb_Nacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estados Unidos", "México", "Guatemala", "Belice", "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panamá", "Otro" }));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Kiosco:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lbl_Kiosco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_Kiosco.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_Kiosco.setText("Kiosco:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,7 +164,6 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
                             .addComponent(txt_Nombre)
                             .addComponent(cmb_Nacionalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(btn_IniciarSesion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,7 +172,7 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel13))
+                            .addComponent(lbl_Kiosco))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cmb_Genero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,11 +180,11 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
                             .addComponent(txt_Telefono, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_Password, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_FechaNac, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmb_Kiosco, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(btn_Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,8 +242,8 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
                                 .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel12))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel13)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lbl_Kiosco)
+                                .addComponent(cmb_Kiosco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_IniciarSesion)
@@ -251,7 +260,7 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
     private void btn_RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarseActionPerformed
         String nameUsu, lastNamUsu, passUsu,
                 dpiUsu, dateborn, gender, 
-                nationality, nickName, phone, rol, gmail;
+                nationality, nickName, phone, rol, gmail, kiosco;
         //Entradas txt
         nameUsu = txt_Nombre.getText();
         lastNamUsu = txt_Apellido.getText();
@@ -262,31 +271,54 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
         phone = txt_Telefono.getText();
         gmail = txt_Correo.getText();
         //Entada comboBox
+        if(cmb_Kiosco.getSelectedItem()!= null){
+            kiosco = cmb_Kiosco.getSelectedItem().toString();
+        }else{
+            kiosco = "";
+        }
         gender = cmb_Genero.getSelectedItem().toString();
         rol = cmb_Rol.getSelectedItem().toString();
         nationality = cmb_Nacionalidad.getSelectedItem().toString();
         //Envio a la funcion
         UsuarioController usuControl = new UsuarioController(); 
         cambioPanel = usuControl.createUsuario(nameUsu, lastNamUsu, passUsu, 
-                dpiUsu, dateborn, gender, nationality, nickName, phone, rol, gmail);
+                dpiUsu, dateborn, gender, nationality, nickName, phone, rol, gmail, kiosco);
         if(cambioPanel != null){
             mainControl.getMain().getvMain().cambiarPaneles(cambioPanel);
         }
     }//GEN-LAST:event_btn_RegistrarseActionPerformed
 
+    private void cmb_RolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_RolActionPerformed
+        String rol = cmb_Rol.getSelectedItem().toString();
+        
+        if(rol.equals("Kiosco")){
+            lbl_Kiosco.setVisible(true);
+            cmb_Kiosco.setVisible(true);
+            setDatosKiosco();
+        }else{
+            lbl_Kiosco.setVisible(false);
+            cmb_Kiosco.setVisible(false);
+        }
+    }//GEN-LAST:event_cmb_RolActionPerformed
+
+    private void setDatosKiosco(){
+        ArrayList<Kiosco> kiosco = kioscoController.listarKioscos();
+        for(int i = 0; i < kiosco.size(); i++){
+            cmb_Kiosco.addItem(kiosco.get(i).getNombreKiosco());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_IniciarSesion;
     private javax.swing.JButton btn_Registrarse;
     private javax.swing.JComboBox<String> cmb_Genero;
+    private javax.swing.JComboBox<String> cmb_Kiosco;
     private javax.swing.JComboBox<String> cmb_Nacionalidad;
     private javax.swing.JComboBox<String> cmb_Rol;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -295,6 +327,7 @@ public class PanelRegistroUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbl_Kiosco;
     private javax.swing.JTextField txt_Alias;
     private javax.swing.JTextField txt_Apellido;
     private javax.swing.JTextField txt_Correo;

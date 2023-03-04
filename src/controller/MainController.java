@@ -11,6 +11,7 @@ import panel.PanelRegion;
 import panel.PanelRegistroUsuario;
 import panel.PanelPerfil;
 import panel.PanelKiosco;
+import panel.PanelMenuKiosco;
 import panel.PanelMunicipio;
 
 /**
@@ -70,5 +71,10 @@ public class MainController {
     public PanelMunicipio getPanelMunicipio(){
         PanelMunicipio pMuni = new PanelMunicipio();
         return pMuni;
+    }
+    
+    public PanelMenuKiosco getPanelMenuKiosco(){
+        PanelMenuKiosco pkiosco = new PanelMenuKiosco();
+        return pkiosco;
     }
 }

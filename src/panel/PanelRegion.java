@@ -17,6 +17,7 @@ public class PanelRegion extends javax.swing.JPanel {
     MainController mainCon = new MainController();
     RegionController regionControl = new RegionController();
     javax.swing.JPanel cambioPanel=null;
+    String id_RegionAnterior;
     
     public PanelRegion() {
         initComponents();
@@ -40,6 +41,9 @@ public class PanelRegion extends javax.swing.JPanel {
         txt_PrecioEstandar = new javax.swing.JTextField();
         txt_PrecioEspecial = new javax.swing.JTextField();
         btn_Obtener = new javax.swing.JButton();
+        btn_Agregar = new javax.swing.JButton();
+        btn_Actualizar = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 102));
 
@@ -95,6 +99,30 @@ public class PanelRegion extends javax.swing.JPanel {
             }
         });
 
+        btn_Agregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Agregar.setText("Agregar");
+        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarActionPerformed(evt);
+            }
+        });
+
+        btn_Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Actualizar.setText("Actualizar");
+        btn_Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ActualizarActionPerformed(evt);
+            }
+        });
+
+        btn_Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Eliminar.setText("Eliminar");
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,8 +156,14 @@ public class PanelRegion extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_Obtener, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(95, 95, 95)
+                                .addComponent(btn_Obtener)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_Agregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_Actualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_Eliminar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -155,7 +189,10 @@ public class PanelRegion extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Volver)
-                    .addComponent(btn_Obtener))
+                    .addComponent(btn_Obtener)
+                    .addComponent(btn_Agregar)
+                    .addComponent(btn_Actualizar)
+                    .addComponent(btn_Eliminar))
                 .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -171,6 +208,7 @@ public class PanelRegion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila antes");
         }else{
             String idRegion = (String)tbl_Regiones.getValueAt(fila, 0);
+            id_RegionAnterior = idRegion;
             String nombre = (String)tbl_Regiones.getValueAt(fila, 1);
             String precioEstandar = String.valueOf(tbl_Regiones.getValueAt(fila, 2));
             String precioEspecial = String.valueOf(tbl_Regiones.getValueAt(fila, 3));
@@ -180,6 +218,42 @@ public class PanelRegion extends javax.swing.JPanel {
             txt_PrecioEspecial.setText(precioEspecial);            
         }
     }//GEN-LAST:event_btn_ObtenerActionPerformed
+
+    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
+        String codigoRegion = txt_CodigoRegion.getText();
+        String nameRegion = txt_Nombre.getText();
+        float precioEstandar = 0;
+        float precioEspecial = 0;
+        try{
+        precioEstandar = Float.valueOf(txt_PrecioEstandar.getText());
+        precioEspecial = Float.valueOf(txt_PrecioEspecial.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Error: verifica que los precios contengan solo numeros");
+        }
+        regionControl.agregar(codigoRegion, nameRegion, precioEstandar, precioEspecial);
+        listar();
+    }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarActionPerformed
+        String codigoRegion = txt_CodigoRegion.getText();
+        String nameRegion = txt_Nombre.getText();
+        float precioEstandar = 0;
+        float precioEspecial = 0;
+        try{
+        precioEstandar = Float.valueOf(txt_PrecioEstandar.getText());
+        precioEspecial = Float.valueOf(txt_PrecioEspecial.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Error: verifica que los precios contengan solo numeros");
+        }
+        regionControl.actualizar(id_RegionAnterior , codigoRegion, nameRegion, precioEstandar, precioEspecial);
+        listar();
+    }//GEN-LAST:event_btn_ActualizarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        String codigoRegion = txt_CodigoRegion.getText();
+        regionControl.eliminar(codigoRegion);
+        listar();        
+    }//GEN-LAST:event_btn_EliminarActionPerformed
     
     private void actionPerformed(){
         //if(e.getSource()==btn_Obtener){
@@ -200,6 +274,10 @@ public class PanelRegion extends javax.swing.JPanel {
     }
     
     private void listar(){
+        int index = tbl_Regiones.getRowCount();
+        for(int e = 0; e<index;e++){
+            model.removeRow(0);
+        }
         model = (DefaultTableModel)tbl_Regiones.getModel();
         List<Region> lista = regionControl.getListRegion();        
         Object[]object = new Object[4];
@@ -214,6 +292,9 @@ public class PanelRegion extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Actualizar;
+    private javax.swing.JButton btn_Agregar;
+    private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_Obtener;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JLabel jLabel1;

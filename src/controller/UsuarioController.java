@@ -1,7 +1,9 @@
 
 package controller;
 
+import beam.Kiosco;
 import beam.Usuario;
+import beam.UsuarioHasKiosco;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -27,23 +29,22 @@ public class UsuarioController {
                     JOptionPane.showMessageDialog(null,"Sesión Inicializada");
                     if(usuario.get(i).getRol().equals("Admin")){
                         indOfUserLogin = i;
-                        System.out.println("ROL:"+usuario.get(i).getRol()+
-                                " GMAIL:" + usuario.get(i).getGmail());
                         cambioPanel = mainController.getpMenAdm();
                         return cambioPanel;
                     }else if(usuario.get(i).getRol().equals("Usuario")){
                         indOfUserLogin = i;
-                        System.out.println("ROL:"+usuario.get(i).getRol()+
-                                " GMAIL:" + usuario.get(i).getGmail());
                         i = usuario.size();
                         cambioPanel = mainController.getpMenUsu();
                         return cambioPanel;
                     }else if(usuario.get(i).getRol().equals("Empresarial")){
                         indOfUserLogin = i;
-                        System.out.println("ROL:"+usuario.get(i).getRol()+
-                                " GMAIL:" + usuario.get(i).getGmail());
                         i = usuario.size();
                         cambioPanel = mainController.getPanelMenuEmp();
+                        return cambioPanel;
+                    }else if(usuario.get(i).getRol().equals("Kiosco")){
+                        indOfUserLogin = i;
+                        i = usuario.size();
+                        cambioPanel = mainController.getPanelMenuKiosco();
                         return cambioPanel;
                     }
                     i = usuario.size();
@@ -64,17 +65,30 @@ public class UsuarioController {
     
     public javax.swing.JPanel createUsuario(String nameUsu, String lastNamUsu, String passUsu,
             String dpiUsu, String dateborn, String gender, String nationality,
-            String nickName, String phone, String rol, String gmail)
+            String nickName, String phone, String rol, String gmail, String kiosco)
     {//PARAMETROS DE ENTRADA PARA ESTE METODO        
         if(passUsu.matches(".*[A-Z].*") && passUsu.matches(".*[a-z].*")
             && passUsu.matches(".*\\d.*")
             && passUsu.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*"))
         {//Validacion de la password
+            if(rol.equals("Kiosco")){
+                UsuarioHasKioscoController usuHasController = new UsuarioHasKioscoController();
+                KioscoController kioscoController = new KioscoController(); 
+                ArrayList<Kiosco> kioscos = kioscoController.listarKioscos();
+                for(int i = 0; i < kioscos.size(); i++){
+                    if(kioscos.get(i).getNombreKiosco().equals(kiosco)){
+                        usuHasController.agregar(usuario.size(), kioscos.get(i).getId_Kiosco());
+                        i = kioscos.size();
+                        JOptionPane.showMessageDialog(null,usuario.size() +" "+kiosco);
+                    }
+                }
+                //usuario.add(new UsuarioHasKiosco(usuario.size(),0));
+            }
             usuario.add(new Usuario(usuario.size(),nameUsu,lastNamUsu,passUsu
                     ,dpiUsu,dateborn,gender,nationality
                     ,nickName,phone,rol,"",gmail));
             cambioPanel = mainController.getpLogin();
-            JOptionPane.showMessageDialog(null,usuario.size());
+            JOptionPane.showMessageDialog(null,"Se registro con exito");
             return cambioPanel;
         }else{
             JOptionPane.showMessageDialog(null, "La contraseña debe cumplir con los siguientes requisitos:\n"

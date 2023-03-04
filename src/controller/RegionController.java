@@ -19,6 +19,26 @@ public class RegionController {
         listRegion.add(new Region("NOC","Noroccidente",40f,44.5f));
     }
     
+    public void agregar(String id_Region, String nameReg, float precioEstandar, float precioEspecial){
+        listRegion.add(new Region(id_Region, nameReg, precioEstandar, precioEspecial));
+    }
+    
+    public void actualizar(String id_RegionAnterior, String id_Region, String nameReg, float precioEstandar, float precioEspecial){
+        for(int i = 0; i < listRegion.size(); i++){
+            if(listRegion.get(i).getId_region().equals(id_RegionAnterior)){
+                listRegion.set(i, new Region(id_Region, nameReg, precioEstandar, precioEspecial));
+            }
+        }
+    }
+    
+    public void eliminar(String codigoRegion){
+        for(int i = 0; i < listRegion.size(); i++){
+            if(listRegion.get(i).getId_region().equals(codigoRegion)){
+                listRegion.remove(i);
+            }
+        }
+    }
+    
     public ArrayList<Region> getListRegion(){
         return listRegion;
     }

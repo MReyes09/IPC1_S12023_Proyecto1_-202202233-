@@ -6,6 +6,7 @@ import beam.Region;
 import controller.KioscoController;
 import controller.MainController;
 import controller.RegionController;
+import controller.UsuarioController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -220,8 +221,14 @@ public class PanelKiosco extends javax.swing.JPanel {
         MainController mainCon = new MainController();
         javax.swing.JPanel cambioPanel=null;
         i = 0;
-        cambioPanel = mainCon.getPanelMenuEmp();
-        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+        UsuarioController usuController = new UsuarioController();
+        if(usuController.getUserLogin().getRol().equals("Admin")){
+            cambioPanel = mainCon.getpMenAdm();
+            mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+        }else if(usuController.getUserLogin().getRol().equals("Empresarial")){
+            cambioPanel = mainCon.getPanelMenuEmp();
+            mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+        }
     }//GEN-LAST:event_btn_VolverActionPerformed
 
     private void btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActualizarActionPerformed
