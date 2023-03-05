@@ -13,6 +13,8 @@ import panel.PanelPerfil;
 import panel.PanelKiosco;
 import panel.PanelMenuKiosco;
 import panel.PanelMunicipio;
+import panel.PanelRegistroFacturacion;
+import panel.PanelRegistroTarjeta;
 
 /**
  * @author matth
@@ -76,5 +78,15 @@ public class MainController {
     public PanelMenuKiosco getPanelMenuKiosco(){
         PanelMenuKiosco pkiosco = new PanelMenuKiosco();
         return pkiosco;
+    }
+    
+    public PanelRegistroTarjeta getPanelRegistroTarjeta(){
+        PanelRegistroTarjeta pRegistroTarjeta = new PanelRegistroTarjeta();
+        return pRegistroTarjeta;
+    }
+    
+    public PanelRegistroFacturacion getPanelRegistroFacturacion(){
+        PanelRegistroFacturacion panelRegistroFacturacion = new PanelRegistroFacturacion();
+        return panelRegistroFacturacion;
     }
 }

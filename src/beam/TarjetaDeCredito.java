@@ -4,12 +4,17 @@ import java.util.Date;
 
 public class TarjetaDeCredito {
     private int id_tarje;
+    private int id_Usuario;
     private String nameTarjeta;
-    private int numTarjeta;
-    private Date fechVencimiento;
+    private String numTarjeta;
+    private String fechVencimiento;
 
-    public TarjetaDeCredito(int id_tarje,String nameTarjeta, int numTarjeta, Date fechVencimiento) {
+    public TarjetaDeCredito() {
+    }
+
+    public TarjetaDeCredito(int id_tarje, int id_Usuario, String nameTarjeta, String numTarjeta, String fechVencimiento) {
         this.id_tarje = id_tarje;
+        this.id_Usuario = id_Usuario;
         this.nameTarjeta = nameTarjeta;
         this.numTarjeta = numTarjeta;
         this.fechVencimiento = fechVencimiento;
@@ -23,6 +28,14 @@ public class TarjetaDeCredito {
         this.id_tarje = id_tarje;
     }
 
+    public int getId_Usuario() {
+        return id_Usuario;
+    }
+
+    public void setId_Usuario(int id_Usuario) {
+        this.id_Usuario = id_Usuario;
+    }
+
     public String getNameTarjeta() {
         return nameTarjeta;
     }
@@ -31,20 +44,20 @@ public class TarjetaDeCredito {
         this.nameTarjeta = nameTarjeta;
     }
 
-    public int getNumTarjeta() {
+    public String getNumTarjeta() {
         return numTarjeta;
     }
 
-    public void setNumTarjeta(int numTarjeta) {
+    public void setNumTarjeta(String numTarjeta) {
         this.numTarjeta = numTarjeta;
     }
 
-    public Date getFechVencimiento() {
+    public String getFechVencimiento() {
         return fechVencimiento;
     }
 
-    public void setFechVencimiento(Date fechVencimiento) {
+    public void setFechVencimiento(String fechVencimiento) {
         this.fechVencimiento = fechVencimiento;
     }
-    
+
 }
