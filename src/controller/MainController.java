@@ -2,6 +2,8 @@
 package controller;
 
 import System.Proyecto1;
+import panel.PanelCompraEnvio;
+import panel.PanelCotizacionPaquetes;
 import panel.PanelDepartamento;
 import panel.PanelLogin;
 import panel.PanelMenuAdmin;
@@ -88,5 +90,15 @@ public class MainController {
     public PanelRegistroFacturacion getPanelRegistroFacturacion(){
         PanelRegistroFacturacion panelRegistroFacturacion = new PanelRegistroFacturacion();
         return panelRegistroFacturacion;
+    }
+    
+    public PanelCotizacionPaquetes getPanelCotizacionPaquetes(){
+        PanelCotizacionPaquetes panelCotizacion = new PanelCotizacionPaquetes();
+        return panelCotizacion;
+    }
+    
+    public PanelCompraEnvio getPanelCompraEnvio(){
+        PanelCompraEnvio panelCompraEnvio = new PanelCompraEnvio();
+        return panelCompraEnvio;
     }
 }

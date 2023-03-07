@@ -263,7 +263,7 @@ public class PanelMunicipio extends javax.swing.JPanel {
             }
         }
         model = (DefaultTableModel)tbl_Municipios.getModel();
-        List<Departamento> lista = depaController.getDepartamento();
+        //List<Departamento> lista = depaController.getDepartamento();
         ArrayList<Municipio> muniList = muniController.getMunicipio();
         Object[]object = new Object[2];
         int e = 0;

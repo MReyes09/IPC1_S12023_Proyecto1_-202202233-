@@ -39,6 +39,17 @@ public class RegionController {
         }
     }
     
+    public Region especificRegion(String id_Region){
+        Region region = new Region();
+        for(int i = 0; i < listRegion.size(); i++){
+            if(listRegion.get(i).getId_region().equals(id_Region)){
+                region = listRegion.get(i);
+                return region;
+            }
+        }
+        return null;
+    }
+    
     public ArrayList<Region> getListRegion(){
         return listRegion;
     }

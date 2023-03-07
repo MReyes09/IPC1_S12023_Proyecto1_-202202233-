@@ -21,6 +21,8 @@ public class UsuarioController {
         usuario.add(new Usuario(0,"",""
             ,"202202233","","","",""
             ,"","","Admin","","ipc1_202202233@ipc1delivery.com"));
+        usuario.add(new Usuario(1,"","","202202233",""
+                ,"","","","","","Usuario","",""));
     }
     public javax.swing.JPanel login(String correo, String password){
         for(int i=0; i<usuario.size();i++){
