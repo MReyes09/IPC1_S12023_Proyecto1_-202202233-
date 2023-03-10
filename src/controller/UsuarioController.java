@@ -3,7 +3,6 @@ package controller;
 
 import beam.Kiosco;
 import beam.Usuario;
-import beam.UsuarioHasKiosco;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

@@ -76,9 +76,19 @@ public class PanelMenuUsuario extends javax.swing.JPanel {
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton6.setText("Descargar Factura Y Guía");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton7.setText("Ver Envíos Solicitados");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,6 +161,16 @@ public class PanelMenuUsuario extends javax.swing.JPanel {
         cambioPanel = mainCon.getPanelCotizacionPaquetes();
         mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        cambioPanel = mainCon.getPanelFacturaGuia();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        cambioPanel = mainCon.getPanelEnvioSolicitado();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

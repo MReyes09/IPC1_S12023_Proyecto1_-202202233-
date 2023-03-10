@@ -159,7 +159,7 @@ public class PanelRegistroFacturacion extends javax.swing.JPanel {
             validar = false;
         }
         if(validar == true){
-            nit = String.valueOf(nit2);
+            nit = txt_Nit.getText();
             regController.agregar(nombreCompleto, direccion, nit);
             btn_Guardar.setVisible(false);
         }

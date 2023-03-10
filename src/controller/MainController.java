@@ -5,6 +5,8 @@ import System.Proyecto1;
 import panel.PanelCompraEnvio;
 import panel.PanelCotizacionPaquetes;
 import panel.PanelDepartamento;
+import panel.PanelEnvioSolicitado;
+import panel.PanelFacturaGuia;
 import panel.PanelLogin;
 import panel.PanelMenuAdmin;
 import panel.PanelMenuEmpresarial;
@@ -17,6 +19,8 @@ import panel.PanelMenuKiosco;
 import panel.PanelMunicipio;
 import panel.PanelRegistroFacturacion;
 import panel.PanelRegistroTarjeta;
+import panel.PanelVerFactura;
+import panel.PanelVerGuia;
 
 /**
  * @author matth
@@ -100,5 +104,25 @@ public class MainController {
     public PanelCompraEnvio getPanelCompraEnvio(){
         PanelCompraEnvio panelCompraEnvio = new PanelCompraEnvio();
         return panelCompraEnvio;
+    }
+    
+    public PanelFacturaGuia getPanelFacturaGuia(){
+        PanelFacturaGuia p = new PanelFacturaGuia();
+        return p;
+    }
+    
+    public PanelVerGuia getPanelVerGuia(){
+        PanelVerGuia p = new PanelVerGuia();
+        return p;
+    }
+    
+    public PanelVerFactura getPanelVerFactura(){
+        PanelVerFactura p = new PanelVerFactura();
+        return p;
+    }
+    
+    public PanelEnvioSolicitado getPanelEnvioSolicitado(){
+        PanelEnvioSolicitado p = new PanelEnvioSolicitado();
+        return p;
     }
 }

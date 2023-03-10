@@ -6,6 +6,7 @@ import beam.Municipio;
 import beam.Region;
 import beam.RegistroFacturacion;
 import controller.DepartamentoController;
+import controller.GuiaEnvioController;
 import controller.MainController;
 import controller.MunicipioController;
 import controller.RegionController;
@@ -25,6 +26,7 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
     MunicipioController muniController = new MunicipioController();
     RegistroFacturacionController regController = new RegistroFacturacionController();
     RegionController regionController = new RegionController(); 
+    GuiaEnvioController guiaController = new GuiaEnvioController();
     Region preciosRegion;
     
     //VARIABLES UTILIZADAS EN EL HTML
@@ -33,6 +35,13 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
     double pesoTotal;
     double envioCosto;
     double costoTotal;
+    String tipoServicio;
+    String depaO;
+    String muniO;
+    String direO;
+    String depaD;
+    String muniD;
+    String direD;
     static int id;
     
     public PanelCotizacionPaquetes() {
@@ -142,6 +151,7 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
             }
         });
 
+        btn_DescargarC.setBackground(new java.awt.Color(153, 0, 0));
         btn_DescargarC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_DescargarC.setText("Descargar Cotización");
         btn_DescargarC.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +161,7 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
         });
 
         btn_Comprar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Comprar.setText("Comprar");
+        btn_Comprar.setText("Solicitar compra");
         btn_Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ComprarActionPerformed(evt);
@@ -176,57 +186,57 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addGap(253, 253, 253))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_NumPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cmb_TipoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(22, 22, 22)
+                                    .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cmb_MuniOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_DireccOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cmb_DepaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(47, 47, 47))
+                                    .addComponent(txt_NumPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cmb_TipoEnvio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(btn_Volver))
-                                    .addGap(250, 250, 250)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel7)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cmb_DepaDes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmb_MuniDes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txt_DireccDes, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel5))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(cmb_MuniOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txt_DireccOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cmb_DepaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(47, 47, 47))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(btn_Volver))
+                                            .addGap(250, 250, 250)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn_Cotizar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btn_Comprar))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel7)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(cmb_DepaDes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(cmb_MuniDes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txt_DireccDes, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addGap(98, 98, 98)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_Cotizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Comprar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(btn_DescargarC)))
+                        .addComponent(lbl_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(btn_DescargarC)
                         .addGap(115, 115, 115))))
         );
         layout.setVerticalGroup(
@@ -329,9 +339,17 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
         numPaquetes = Integer.valueOf(txt_NumPaquetes.getText());
         tipoEnvio = cmb_TipoEnvio.getSelectedIndex();
         pesoTotal = Double.valueOf(txt_PesoTo.getText());
+        depaO = cmb_DepaOrigen.getSelectedItem().toString();
+        muniO = cmb_MuniOrigen.getSelectedItem().toString();
+        direO = txt_DireccOrigen.getText();
+        depaD = cmb_DepaDes.getSelectedItem().toString();
+        muniD = cmb_MuniDes.getSelectedItem().toString();
+        direD = txt_DireccDes.getText();
         if(tipoEnvio == 0){
+            tipoServicio = "Estandar";
             envioCosto = preciosRegion.getPreciEstandar();
         }else{
+            tipoServicio = "Especial";
             envioCosto = preciosRegion.getPrecEspecial();
         }
         costoTotal = numPaquetes*pesoTotal*envioCosto;
@@ -341,13 +359,6 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_CotizarActionPerformed
 
     private void btn_DescargarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DescargarCActionPerformed
-        String depaO = cmb_DepaOrigen.getSelectedItem().toString();
-        String muniO = cmb_MuniOrigen.getSelectedItem().toString();
-        String direO = txt_DireccOrigen.getText();
-        String depaD = cmb_DepaDes.getSelectedItem().toString();
-        String muniD = cmb_MuniDes.getSelectedItem().toString();
-        String direD = txt_DireccDes.getText();
-        
         try {
             FileWriter fileWriter = new FileWriter("C:\\Users\\matth\\Downloads\\Cotización"+ id +".html");
             fileWriter.write("<html>"+
@@ -435,7 +446,9 @@ public class PanelCotizacionPaquetes extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_DescargarCActionPerformed
 
     private void btn_ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ComprarActionPerformed
-        
+        guiaController.agregarGuiaTemporal(numPaquetes, tipoEnvio, pesoTotal, envioCosto, costoTotal, depaO, muniO, direO, depaD, muniD, direD, tipoServicio);
+        cambioPanel = mainCon.getPanelCompraEnvio();
+        mainCon.getMain().getvMain().cambiarPaneles(cambioPanel);
     }//GEN-LAST:event_btn_ComprarActionPerformed
 
     private void listarDepartamentos(){
