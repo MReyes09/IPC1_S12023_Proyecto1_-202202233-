@@ -275,27 +275,13 @@ public class PanelDepartamento extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_ObtenerActionPerformed
 
     private void cmb_CodRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CodRegActionPerformed
-        int selectIndex = cmb_CodReg.getSelectedIndex();
-        
-        switch(selectIndex){
-            case 0:
-                txt_NomReg.setText("Metropolitana");
-                break;
-            case 1:
-                txt_NomReg.setText("Norte");
-                break;
-            case 2:
-                txt_NomReg.setText("Nororiente");
-                break;
-            case 3:
-                txt_NomReg.setText("Suroriente");
-                break;
-            case 4:
-                txt_NomReg.setText("Suroccidente");
-                break;
-            case 5:
-                txt_NomReg.setText("Noroccidente");
-                break;
+        String codReg = cmb_CodReg.getSelectedItem().toString();
+        ArrayList<Region> reg = new ArrayList<Region>();
+        reg = regContr.getListRegion();
+        for(int i = 0; i < reg.size(); i++){
+            if(reg.get(i).getId_region().equals(codReg)){
+                txt_NomReg.setText(reg.get(i).getNameReg());
+            }
         }
     }//GEN-LAST:event_cmb_CodRegActionPerformed
 
